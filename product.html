@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MyShop - Products</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header class="navbar">
+  <a href="index.html" class="logo">MyShop</a>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="products.html" class="active">Products</a>
+    <a href="payment.html">Payment</a>
+  </nav>
+</header>
+
+<section class="products-grid">
+  <div class="product-card">
+    <img src="https://picsum.photos/seed/p1/300/200" />
+    <h3>Sneakers</h3>
+    <p>₹2499</p>
+    <button onclick="addToCart('Sneakers',2499)">Add to Cart</button>
+  </div>
+
+  <div class="product-card">
+    <img src="https://picsum.photos/seed/p2/300/200" />
+    <h3>Hoodie</h3>
+    <p>₹1599</p>
+    <button onclick="addToCart('Hoodie',1599)">Add to Cart</button>
+  </div>
+
+  <div class="product-card">
+    <img src="https://picsum.photos/seed/p3/300/200" />
+    <h3>Jeans</h3>
+    <p>₹1999</p>
+    <button onclick="addToCart('Jeans',1999)">Add to Cart</button>
+  </div>
+
+  <div class="product-card">
+    <img src="https://picsum.photos/seed/p4/300/200" />
+    <h3>Wallet</h3>
+    <p>₹799</p>
+    <button onclick="addToCart('Wallet',799)">Add to Cart</button>
+  </div>
+</section>
+
+<script>
+function addToCart(name, price) {
+  let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+  cart.push({ name, price });
+  localStorage.setItem('cart', JSON.stringify(cart));
+  alert("Added to cart!");
+}
+</script>
+
+<footer>© 2025 MyShop</footer>
+</body>
+</html>
+
