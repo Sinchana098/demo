@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MyShop - Payment</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header class="navbar">
+  <a href="index.html" class="logo">MyShop</a>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="products.html">Products</a>
+    <a href="payment.html" class="active">Payment</a>
+  </nav>
+</header>
+
+<section class="page">
+  <h2>Checkout</h2>
+
+  <div id="cartList"></div>
+  <h3 id="total"></h3>
+
+  <form id="payForm" class="payment-form">
+    <input type="text" placeholder="Full Name" required />
+    <input type="email" placeholder="Email" required />
+    <textarea placeholder="Address" required></textarea>
+    <button type="submit" class="btn-primary">Place Order</button>
+  </form>
+
+  <p id="msg"></p>
+</section>
+
+<script>
+let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+let list = document.getElementById('cartList');
+let total = cart.reduce((s, i) => s + i.price, 0);
+
+list.innerHTML = cart
+  .map(item => `<p>${item.name} - ₹${item.price}</p>`)
+  .join('');
+
+document.getElementById('total').innerText = `Total: ₹${total}`;
+
+document.getElementById('payForm').onsubmit = (e) => {
+  e.preventDefault();
+  document.getElementById('msg').innerText = "Order Placed Successfully!";
+  localStorage.removeItem('cart');
+};
+</script>
+
+<footer>© 2025 MyShop</footer>
+</body>
+</html>
